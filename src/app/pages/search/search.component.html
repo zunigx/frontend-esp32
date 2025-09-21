@@ -1,0 +1,33 @@
+<div class="search-container">
+  <div class="header-section">
+    <img src="assets/images/logo.png" alt="Logo" class="logo" />
+    <h1>Buscar Productos</h1>
+  </div>
+
+  <div class="search-bar">
+    <span class="p-input-icon-left">
+      <input
+        pInputText
+        type="text"
+        placeholder="Buscar playeras..."
+      />
+    </span>
+    <i class="pi pi-search"></i>
+  </div>
+
+  <div class="results-grid">
+    <p-card
+      *ngFor="let product of filteredProducts"
+      styleClass="p-card-result"
+    >
+      <img [src]="product.image" [alt]="product.name" class="product-image" />
+      <div class="product-details">
+        <h3>{{ product.name }}</h3>
+        <p class="price">${{ product.price }}</p>
+      </div>
+    </p-card>
+  </div>
+
+  <br />
+  <app-footer></app-footer>
+</div>

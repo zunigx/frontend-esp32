@@ -1,7 +1,18 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { provideServerRendering } from '@angular/platform-server';
 import { AppComponent } from './app/app.component';
-import { config } from './app/app.config.server';
+import { appConfig } from './app/app.config';
+// import type { BootstrapContext } from '@angular/platform-server';
 
-const bootstrap = () => bootstrapApplication(AppComponent, config);
-
-export default bootstrap;
+export default async function bootstrap(context: any) {
+  return await bootstrapApplication(
+    AppComponent,
+    {
+      providers: [
+        ...appConfig.providers,
+        provideServerRendering()
+      ]
+    },
+    context // Pass the context here!
+  );
+}

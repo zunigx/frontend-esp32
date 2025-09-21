@@ -1,0 +1,123 @@
+.header-section {
+  position: relative;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  width: 200px;
+}
+
+.slogan {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.search-container {
+  padding: 1rem;
+  background-color: #f9e79f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-bottom: 70px; /* Espacio para el footer (ajusta según su altura) */
+}
+
+.search-bar {
+  margin-bottom: 1rem;
+}
+
+.p-input-icon-left {
+  width: 100%;
+}
+
+.p-input-icon-left input {
+  width: 30%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: transparent; /* Barra transparente */
+  border: 1px solid #fff; /* Borde sutil */
+  color: #1A2A44; /* Texto legible */
+}
+
+.p-input-icon-left i {
+  color: #1A2A44; /* Ícono legible */
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Una columna por defecto (mobile) */
+  gap: 1rem;
+}
+
+.p-card-body { /* Sobrescribe el fondo negro de p-card-body */
+  background-color: #fff !important; /* !important para priorizar sobre estilos de PrimeNG */
+  padding: 0.5rem; /* Ajusta el padding interno si es necesario */
+}
+
+.p-card-result {
+  text-align: center;
+  background-color: #fff; /* Cards blancos */
+  border: 1px solid #ddd; /* Borde sutil */
+  border-radius: 4px; /* Esquinas redondeadas */
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.product-details {
+  padding: 0.5rem;
+}
+
+.product-details h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.product-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  color: #1A2A44;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  color: #f9e79f;
+}
+
+.price {
+  font-weight: bold;
+  color: #1A2A44;
+  margin-bottom: 0.5rem;
+}
+
+app-footer {
+  flex-shrink: 0; /* Evita que el footer se comprima */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+@media (min-width: 768px) {
+  .results-grid {
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas en desktop */
+  }
+
+  .product-image {
+    max-height: 250px;
+  }
+
+  .p-input-icon-left input {
+    font-size: 1.2rem;
+  }
+}
