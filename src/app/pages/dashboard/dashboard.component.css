@@ -1,0 +1,44 @@
+.dashboard-root {
+  padding: 1rem;
+  background: #f9f9fb;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.install-btn {
+  display: none;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.dash-card .metric {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1A2A44;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dashboard-root {
+    padding: 1.5rem;
+  }
+}
