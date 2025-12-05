@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -24,16 +24,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private apiUrl = 'https://server-kappa-smoky-91.vercel.app/api/telemetry';
   private refreshInterval: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
-    // Cargar datos inmediatamente
-    this.loadTelemetryData();
-
-    // Actualizar cada 5 segundos
-    this.refreshInterval = setInterval(() => {
+    // Solo ejecutar en el navegador, no en el servidor
+    if (isPlatformBrowser(this.platformId)) {
+      // Cargar datos inmediatamente
       this.loadTelemetryData();
-    }, 5000);
+
+      // Actualizar cada 5 segundos
+      this.refreshInterval = setInterval(() => {
+        this.loadTelemetryData();
+      }, 5000);
+    }
   }
 
   ngOnDestroy(): void {

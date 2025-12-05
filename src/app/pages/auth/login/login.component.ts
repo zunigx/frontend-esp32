@@ -34,8 +34,8 @@ export class LoginComponent {
 
   // Usuarios válidos hardcodeados
   private validUsers = [
-    { email: 'admin@example.com', password: 'admin123' },
-    { email: 'user@example.com', password: 'user123' }
+    { email: 'admin@mail.com', password: 'admin123' },
+    { email: 'user@mail.com', password: 'user123' }
   ];
 
   constructor(private router: Router) {}
