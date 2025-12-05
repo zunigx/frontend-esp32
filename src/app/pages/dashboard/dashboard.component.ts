@@ -49,6 +49,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  reloadPage(): void {
+    window.location.reload();
+  }
+
   loadTelemetryData(): void {
     console.log('Loading telemetry data from:', this.apiUrl);
     this.http.get<any[]>(this.apiUrl).subscribe({

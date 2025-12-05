@@ -1,7 +1,10 @@
 <div class="dashboard-root">
   <header class="dashboard-header">
     <h1>🌡️ ESP32 Monitoring Dashboard</h1>
-    <button pButton type="button" label="Instalar App" class="install-btn" id="btnInstall"></button>
+    <div class="header-buttons">
+      <button pButton type="button" label="Recargar" icon="pi pi-refresh" class="refresh-btn" (click)="reloadPage()"></button>
+      <button pButton type="button" label="Instalar App" class="install-btn" id="btnInstall"></button>
+    </div>
   </header>
 
   <main class="dashboard-grid">
