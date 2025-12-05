@@ -1,51 +1,21 @@
 <div class="dashboard-root">
   <header class="dashboard-header">
-    <h1>Dashboard del dispositivo</h1>
+    <h1>🌡️ ESP32 Monitoring Dashboard</h1>
     <button pButton type="button" label="Instalar App" class="install-btn" id="btnInstall"></button>
   </header>
 
   <main class="dashboard-grid">
-    <p-card header="Temperatura" styleClass="dash-card">
-      <div class="metric">{{ device.temperature }}</div>
+    <p-card header="🌡️ Temperatura" styleClass="dash-card">
+      <div class="metric">{{device.temperature}}</div>
     </p-card>
 
-    <p-card header="Humedad" styleClass="dash-card">
-      <div class="metric">{{ device.humidity }}</div>
+    <p-card header="💧 Humedad" styleClass="dash-card">
+      <div class="metric">{{device.humidity}}</div>
     </p-card>
 
-    <p-card header="Voltaje Entrada" styleClass="dash-card">
-      <div class="metric">{{ device.inputVoltage }}</div>
+    <p-card header="📡 Conexión" styleClass="dash-card">
+      <div class="metric" [style.color]="device.online ? '#10b981' : '#ef4444'">{{device.online ? '✓ En línea' : '✗ Desconectado'}}</div>
     </p-card>
 
-    <p-card header="Tiempo Activo" styleClass="dash-card">
-      <div class="metric">{{ device.uptime }}</div>
-    </p-card>
-
-    <p-card header="Conexión" styleClass="dash-card">
-      <div class="metric">{{ device.online ? 'En línea' : 'Desconectado' }}</div>
-    </p-card>
-
-    <p-card header="Voltaje Batería" styleClass="dash-card">
-      <div class="metric">{{ device.batteryVoltage }}</div>
-    </p-card>
   </main>
 </div>
-
-<script>
-  let deferredPrompt;
-  const btn = document.getElementById('btnInstall');
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if (btn) btn.style.display = 'inline-block';
-  });
-
-  if (btn) {
-    btn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      deferredPrompt = null;
-      btn.style.display = 'none';
-    });
-  }
-</script>

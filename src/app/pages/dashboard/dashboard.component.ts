@@ -50,17 +50,37 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   loadTelemetryData(): void {
-    this.http.get<any>(this.apiUrl).subscribe({
+    console.log('Loading telemetry data from:', this.apiUrl);
+    this.http.get<any[]>(this.apiUrl).subscribe({
       next: (data) => {
-        // Actualizar datos del dispositivo
-        this.device = {
-          temperature: data.temperature ? `${data.temperature} °C` : '-- °C',
-          humidity: data.humidity ? `${data.humidity} %` : '-- %',
-          inputVoltage: data.inputVoltage ? `${data.inputVoltage} V` : '-- V',
-          uptime: data.uptime || '--',
-          online: data.online ?? false,
-          batteryVoltage: data.batteryVoltage ? `${data.batteryVoltage} V` : '-- V'
-        };
+        console.log('Telemetry data received:', data);
+
+        // Tomar el primer elemento del array (el más reciente)
+        if (data && data.length > 0) {
+          const latestData = data[0];
+
+          // Mapear las propiedades del API a las del componente
+          this.device = {
+            temperature: latestData.temp ? `${latestData.temp} °C` : '-- °C',
+            humidity: latestData.hum ? `${latestData.hum} %` : '-- %',
+            inputVoltage: latestData.inputVoltage ? `${latestData.inputVoltage} V` : '-- V',
+            uptime: latestData.uptime || '--',
+            online: latestData.temp != null && latestData.hum != null, // Considerar online si hay datos
+            batteryVoltage: latestData.batteryVoltage ? `${latestData.batteryVoltage} V` : '-- V'
+          };
+        } else {
+          // Sin datos disponibles
+          this.device = {
+            temperature: '-- °C',
+            humidity: '-- %',
+            inputVoltage: '-- V',
+            uptime: '--',
+            online: false,
+            batteryVoltage: '-- V'
+          };
+        }
+
+        console.log('Device updated:', this.device);
       },
       error: (error) => {
         console.error('Error al cargar datos de telemetría:', error);

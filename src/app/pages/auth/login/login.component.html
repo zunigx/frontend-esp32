@@ -1,43 +1,38 @@
 <div class="login-root">
-  <!-- Background decorativo -->
-  <div class="background-decoration">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
-  </div>
+  <!-- Background con gradiente -->
+  <div class="background-overlay"></div>
 
   <!-- Contenedor principal -->
   <div class="login-container">
-    <!-- Header con logo/título -->
-    <div class="login-header">
-      <h1 class="app-title">Monitoring Dashboard</h1>
-      <p class="app-subtitle">ESP32 Device Monitor</p>
-    </div>
 
-    <!-- Card con formulario -->
-    <p-card class="login-card" [style]="{ 'box-shadow': '0 10px 40px rgba(26, 42, 68, 0.15)' }">
-      <!-- Formulario con validación de usuarios -->
+    <!-- Card personalizado -->
+    <div class="login-card">
+      <!-- Formulario -->
       <form class="login-form" (submit)="$event.preventDefault(); onLogin()">
         <!-- Email -->
         <div class="form-group">
-          <label for="email" class="form-label">Correo Electrónico</label>
-          <span class="p-input-icon-left w-full">
+          <label for="email" class="form-label">
             <i class="pi pi-envelope"></i>
-            <input
-              pInputText
-              id="email"
-              type="email"
-              [(ngModel)]="credentials.email"
-              name="email"
-              placeholder="admin@mail.com"
-              class="w-full"
-              required
-            />
-          </span>
+            Correo Electrónico
+          </label>
+          <input
+            pInputText
+            id="email"
+            type="email"
+            [(ngModel)]="credentials.email"
+            name="email"
+            placeholder="admin@mail.com"
+            class="form-input"
+            required
+          />
         </div>
 
         <!-- Contraseña -->
         <div class="form-group">
-          <label for="password" class="form-label">Contraseña</label>
+          <label for="password" class="form-label">
+            <i class="pi pi-lock"></i>
+            Contraseña
+          </label>
           <p-password
             id="password"
             [(ngModel)]="credentials.password"
@@ -46,60 +41,62 @@
             [toggleMask]="true"
             [feedback]="false"
             styleClass="w-full"
-            inputStyleClass="w-full"
+            inputStyleClass="form-input"
           ></p-password>
         </div>
 
-        <!-- Hint de usuarios válidos -->
-        <div style="background: #f0f8ff; padding: 0.75rem; border-radius: 6px; font-size: 0.85rem; color: #1a2a44; border-left: 3px solid #2d4563;">
-          <strong>Usuarios de prueba:</strong><br>
-          • admin&#64;example.com / admin123<br>
-          • user&#64;example.com / user123
+        <!-- Usuarios de prueba -->
+        <div class="info-box">
+          <i class="pi pi-info-circle"></i>
+          <div>
+            <strong>Usuarios de prueba:</strong><br>
+            <span>admin&#64;mail.com / admin123</span><br>
+            <span>user&#64;mail.com / user123</span>
+          </div>
         </div>
 
         <!-- Recuérdame / Olvidé contraseña -->
         <div class="form-row">
-          <div class="form-checkbox">
+          <label class="checkbox-label">
             <p-checkbox
               [(ngModel)]="credentials.rememberMe"
               name="rememberMe"
               [binary]="true"
-              label="Recuérdame"
             ></p-checkbox>
-          </div>
-          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            <span>Recuérdame</span>
+          </label>
+          <a href="#" class="link-text">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <!-- Botón de login que ejecuta validación -->
+        <!-- Botón de login -->
         <button
           pButton
           type="submit"
           label="Iniciar Sesión"
-          class="login-btn w-full"
+          class="btn-primary"
           icon="pi pi-sign-in"
         ></button>
       </form>
 
       <!-- Divisor -->
-      <p-divider align="center">
-        <span class="divider-text">O</span>
-      </p-divider>
+      <div class="divider">
+        <span>O</span>
+      </div>
 
       <!-- Botón de registro -->
       <button
         pButton
         type="button"
-        label="Crear Cuenta"
-        class="register-btn w-full"
+        label="Crear Nueva Cuenta"
+        class="btn-secondary"
         icon="pi pi-user-plus"
-        severity="secondary"
         (click)="onRegister()"
       ></button>
 
-      <!-- Footer del card -->
+      <!-- Footer -->
       <div class="card-footer">
-        <small>© 2024 Monitoring Dashboard. Todos los derechos reservados.</small>
+        <small>© 2024 Monitoring Dashboard</small>
       </div>
-    </p-card>
+    </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 .dashboard-root {
-  padding: 1rem;
-  background: #f9f9fb;
+  padding: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   box-sizing: border-box;
   display: flex;
@@ -8,37 +8,104 @@
 }
 
 .dashboard-header {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
+}
+
+.dashboard-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #667eea;
+  margin: 0;
 }
 
 .install-btn {
   display: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.625rem 1.25rem !important;
+  font-weight: 600 !important;
 }
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.75rem;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dashboard-grid :deep(.p-card) {
+  border-radius: 16px;
+  border: none;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dashboard-grid :deep(.p-card:hover) {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-grid :deep(.p-card-header) {
+  padding: 1.25rem 1.5rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #667eea;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.dashboard-grid :deep(.p-card-body) {
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.dashboard-grid :deep(.p-card-content) {
+  padding: 0;
 }
 
 .dash-card .metric {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #1A2A44;
-  padding: 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+  padding: 0;
   text-align: center;
+  letter-spacing: -0.5px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .dashboard-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
   }
 
-  .dashboard-root {
-    padding: 1.5rem;
+  .dashboard-header {
+    padding: 1.5rem 2rem;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .dash-card .metric {
+    font-size: 2.25rem;
   }
 }
