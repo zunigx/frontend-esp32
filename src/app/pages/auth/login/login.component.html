@@ -15,8 +15,8 @@
 
     <!-- Card con formulario -->
     <p-card class="login-card" [style]="{ 'box-shadow': '0 10px 40px rgba(26, 42, 68, 0.15)' }">
-      <!-- Usamos (click)="onLogin()" en el botón para forzar la navegación -->
-      <form class="login-form" (submit)="$event.preventDefault()">
+      <!-- Formulario con validación de usuarios -->
+      <form class="login-form" (submit)="$event.preventDefault(); onLogin()">
         <!-- Email -->
         <div class="form-group">
           <label for="email" class="form-label">Correo Electrónico</label>
@@ -28,8 +28,9 @@
               type="email"
               [(ngModel)]="credentials.email"
               name="email"
-              placeholder="tu@email.com"
+              placeholder="admin@example.com"
               class="w-full"
+              required
             />
           </span>
         </div>
@@ -49,6 +50,13 @@
           ></p-password>
         </div>
 
+        <!-- Hint de usuarios válidos -->
+        <div style="background: #f0f8ff; padding: 0.75rem; border-radius: 6px; font-size: 0.85rem; color: #1a2a44; border-left: 3px solid #2d4563;">
+          <strong>Usuarios de prueba:</strong><br>
+          • admin@example.com / admin123<br>
+          • user@example.com / user123
+        </div>
+
         <!-- Recuérdame / Olvidé contraseña -->
         <div class="form-row">
           <div class="form-checkbox">
@@ -62,11 +70,10 @@
           <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <!-- Botón de login -->
+        <!-- Botón de login que ejecuta validación -->
         <button
           pButton
-          type="button"
-          (click)="onLogin()"
+          type="submit"
           label="Iniciar Sesión"
           class="login-btn w-full"
           icon="pi pi-sign-in"

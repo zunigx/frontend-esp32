@@ -32,11 +32,27 @@ export class LoginComponent {
     rememberMe: false
   };
 
+  // Usuarios válidos hardcodeados
+  private validUsers = [
+    { email: 'admin@example.com', password: 'admin123' },
+    { email: 'user@example.com', password: 'user123' }
+  ];
+
   constructor(private router: Router) {}
 
-  // Navegar al dashboard sin condicionales para asegurar la redirección
+  // Validar credenciales y navegar al dashboard
   onLogin() {
-    this.router.navigate(['/dashboard']);
+    const user = this.validUsers.find(
+      u => u.email === this.credentials.email && u.password === this.credentials.password
+    );
+
+    if (user) {
+      // Credenciales válidas, navegar al dashboard
+      this.router.navigate(['/dashboard']);
+    } else {
+      // Credenciales inválidas, mostrar alerta
+      alert('Credenciales incorrectas. Por favor, intente nuevamente.');
+    }
   }
 
   onRegister() {
